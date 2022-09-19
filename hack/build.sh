@@ -51,7 +51,7 @@ function plugin::generate_img() {
 
   (
     cd ${ROOT}/go/build
-    docker build \
+    sudo docker build \
         --network=host \
         --build-arg version=${version} \
         --build-arg commit=${commit} \
