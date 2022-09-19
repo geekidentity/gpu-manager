@@ -127,13 +127,14 @@ func GetCheckpointData(devicePluginPath string) (*types.Checkpoint, error) {
 	if err != nil {
 		return nil, err
 	}
-	klog.V(4).Infof("Try v2 checkpoint data format")
+	klog.V(4).Infof("Try v2 checkpoint data format cpFile {} data {} ", cpFile, data)
 	err = json.Unmarshal(data, cpV2Data)
 	if err != nil {
 		return nil, err
 	}
 
 	if cpV2Data.Data != nil {
+		klog.V(4).Infof("Try v2 checkpoint data format cpFile {} cpV2Data.Data {} ", cpFile, cpV2Data.Data)
 		return cpV2Data.Data, nil
 	}
 

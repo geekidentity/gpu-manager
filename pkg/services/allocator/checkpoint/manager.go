@@ -20,6 +20,7 @@ package checkpoint
 import (
 	"fmt"
 	"io/ioutil"
+	"k8s.io/klog"
 	"os"
 	"path/filepath"
 )
@@ -62,6 +63,7 @@ func (f *Manager) Write(data []byte) error {
 
 // Read reads the checkpoint from the file.
 func (f *Manager) Read() ([]byte, error) {
+	klog.V(4).Infof("read file {}", f.getPathOfFile())
 	bytes, err := ioutil.ReadFile(f.getPathOfFile())
 	if os.IsNotExist(err) {
 		return bytes, ErrKeyNotFound
